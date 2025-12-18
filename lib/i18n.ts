@@ -90,6 +90,23 @@ export const translations = {
       email: 'info@viana-limpezas.pt',
       horarios: 'Seg-Sex: 9h-18h | Sáb: 9h-13h',
     },
+    newsletter: {
+      titulo: 'Receba Nossas Dicas & Promoções',
+      descricao: 'Inscreva-se na nossa newsletter para receber dicas de limpeza e ofertas exclusivas',
+      placeholder: 'Seu email...',
+      button: 'Inscrever-se',
+      success: 'Sucesso! Verificou seu email.',
+      error: 'Email inválido. Tente novamente.',
+    },
+    chat: {
+      titulo: 'Suporte Viana',
+      placeholder: 'Digite sua mensagem...',
+      send: 'Enviar',
+      messages: [
+        { bot: true, text: 'Olá! 👋 Como podemos ajudar?' },
+        { bot: true, text: 'Temos respostas rápidas sobre serviços, preços e agendamento.' },
+      ]
+    },
     services: {
       titulo: 'Nossos Serviços',
       limpeza_residencial: {
@@ -272,6 +289,23 @@ export const translations = {
       email: 'info@viana-limpezas.pt',
       telefone: '+351 91 234 5678',
       horarios: 'Mon-Sat: 8am-6pm | Sun: 9am-1pm'
+    },
+    newsletter: {
+      titulo: 'Get Our Tips & Exclusive Offers',
+      descricao: 'Subscribe to our newsletter for cleaning tips and exclusive deals',
+      placeholder: 'Your email...',
+      button: 'Subscribe',
+      success: 'Success! Please check your email.',
+      error: 'Invalid email. Try again.',
+    },
+    chat: {
+      titulo: 'Viana Support',
+      placeholder: 'Type your message...',
+      send: 'Send',
+      messages: [
+        { bot: true, text: 'Hello! 👋 How can we help?' },
+        { bot: true, text: 'We have quick answers about services, pricing and booking.' },
+      ]
     },
     sobre: {
       titulo: 'About Viana',

@@ -8,6 +8,7 @@ type Locale = 'pt' | 'en'
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>('pt')
+  const [chatOpen, setChatOpen] = useState(false)
   const t = translations[locale]
 
   const toggleLanguage = () => {
@@ -250,6 +251,15 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Newsletter Section */}
+      <section className={styles.newsletterSection}>
+        <div className={styles.newsletterContent}>
+          <h2>{t.newsletter.titulo}</h2>
+          <p>{t.newsletter.descricao}</p>
+          <NewsletterForm locale={locale} t={t} />
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className={styles.ctaSection}>
         <h2>{locale === 'pt' ? 'Pronto para Transformar Seus Espaços?' : 'Ready to Transform Your Spaces?'}</h2>
@@ -258,6 +268,9 @@ export default function Home() {
           💬 {locale === 'pt' ? 'Abrir WhatsApp' : 'Open WhatsApp'}
         </button>
       </section>
+
+      {/* Chat Bot Floating */}
+      <ChatBot locale={locale} t={t} open={chatOpen} setOpen={setChatOpen} />
 
       {/* Footer */}
       <footer className={styles.footer}>
@@ -372,6 +385,98 @@ function CalendarBooking({ locale, t }: { locale: 'pt' | 'en', t: any }) {
     </div>
   )
 }
+
+function NewsletterForm({ locale, t }: { locale: 'pt' | 'en', t: any }) {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      setStatus('success')
+      setEmail('')
+      setTimeout(() => setStatus('idle'), 3000)
+    } else {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 3000)
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className={styles.newsletterForm}>
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder={t.newsletter.placeholder}
+        className={styles.newsletterInput}
+        required
+      />
+      <button type="submit" className={styles.newsletterBtn}>
+        {t.newsletter.button}
+      </button>
+      {status === 'success' && <p className={styles.successMsg}>✓ {t.newsletter.success}</p>}
+      {status === 'error' && <p className={styles.errorMsg}>✗ {t.newsletter.error}</p>}
+    </form>
   )
 }
-// Updated at Thu Dec 18 09:09:57 WAT 2025
+
+function ChatBot({ locale, t, open, setOpen }: { locale: 'pt' | 'en', t: any, open: boolean, setOpen: (v: boolean) => void }) {
+  const [messages, setMessages] = useState(t.chat.messages)
+  const [input, setInput] = useState('')
+
+  const handleSend = () => {
+    if (input.trim()) {
+      setMessages([...messages, { bot: false, text: input }])
+      setInput('')
+      setTimeout(() => {
+        const responses = [
+          locale === 'pt' ? 'Ótimo! Como posso ajudar?' : 'Great! How can I help?',
+          locale === 'pt' ? 'Qual serviço você procura?' : 'Which service are you looking for?',
+          locale === 'pt' ? 'Posso agendar para você!' : 'I can schedule for you!',
+        ]
+        const randomResponse = responses[Math.floor(Math.random() * responses.length)]
+        setMessages(prev => [...prev, { bot: true, text: randomResponse }])
+      }, 500)
+    }
+  }
+
+  return (
+    <>
+      <button
+        onClick={() => setOpen(!open)}
+        className={styles.chatButton}
+        title={t.chat.titulo}
+      >
+        💬
+      </button>
+
+      {open && (
+        <div className={styles.chatBox}>
+          <div className={styles.chatHeader}>
+            <h3>{t.chat.titulo}</h3>
+            <button onClick={() => setOpen(false)} className={styles.chatClose}>×</button>
+          </div>
+          <div className={styles.chatMessages}>
+            {messages.map((msg, i) => (
+              <div key={i} className={`${styles.chatMessage} ${msg.bot ? styles.bot : styles.user}`}>
+                {msg.text}
+              </div>
+            ))}
+          </div>
+          <div className={styles.chatInput}>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+              placeholder={t.chat.placeholder}
+              className={styles.chatInputField}
+            />
+            <button onClick={handleSend} className={styles.chatSendBtn}>{t.chat.send}</button>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
