@@ -1,16 +1,7 @@
 /* Premium CSS for Viana Limpezas */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-  color: #1a1a1a;
-}
+/* Global resets and base typography moved to app/globals.css to satisfy
+   CSS module purity requirements. Keep component-scoped rules here. */
 
 .container {
   width: 100%;

@@ -66,6 +66,10 @@ const responses = {
       'Que interessante! Como posso ajudar?',
       'Deixa eu pensar... Qual é exatamente sua dúvida?',
     ],
+    complaint: [
+      'Lamentamos muito o inconveniente. Por favor, detalhe o problema para que possamos resolver o mais rápido possível.',
+      'Sinto muito por isso. Podemos conectar você ao nosso gerente para tratar do assunto imediatamente.'
+    ],
     unknown: [
       'Desculpa, não entendi bem. Pode reformular?',
       'Hmm, não tenho resposta exata para isso. Quer agendar uma conversa com nosso time?',
@@ -102,6 +106,10 @@ const responses = {
       'That\'s interesting! How can I help?',
       'Let me think... What\'s your exact question?',
     ],
+    complaint: [
+      'We\'re very sorry to hear that. Please describe the issue so we can resolve it as soon as possible.',
+      'Apologies for the inconvenience. We can connect you with our manager to handle this right away.'
+    ],
     unknown: [
       'Sorry, I didn\'t understand. Can you rephrase?',
       'Hmm, I don\'t have an exact answer for that. Want to schedule a call with our team?',
@@ -115,6 +123,10 @@ const suggestions = {
     pricing: ['Detalhes', 'Agendar Agora', 'Falar com Especialista'],
     booking: ['Confirmar', 'Ver Horários', 'Mais Tarde'],
     services: ['Conhecer Mais', 'Agendar Serviço', 'Dúvidas'],
+    complaint: ['Falar com Gerente', 'Solicitar Reembolso', 'Registrar Reclamação'],
+    location: ['Ver Mapa', 'Endereço', 'Como Chegar'],
+    general: ['Mais Informações', 'Política de Cancelamento', 'Falar com Suporte'],
+    unknown: ['Falar com Suporte', 'Agendar Avaliação', 'Receber Orçamento'],
     contact: ['Telefonar', 'Email', 'Conversar'],
   },
   en: {
@@ -122,6 +134,10 @@ const suggestions = {
     pricing: ['Learn More', 'Schedule', 'Talk to Expert'],
     booking: ['Confirm', 'See Times', 'Later'],
     services: ['Learn More', 'Book Now', 'Questions'],
+    complaint: ['Speak to Manager', 'Request Refund', 'File Complaint'],
+    location: ['View Map', 'Address', 'How to Get There'],
+    general: ['More Info', 'Cancellation Policy', 'Contact Support'],
+    unknown: ['Contact Support', 'Schedule Assessment', 'Get Quote'],
     contact: ['Call', 'Email', 'Chat'],
   }
 }

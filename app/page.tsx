@@ -119,7 +119,8 @@ export default function Home() {
             { key: 'limpeza_residencial', icon: '🏠' },
             { key: 'limpeza_empresarial', icon: '🏢' },
           ].map((service) => {
-            const svc = t.services[service.key as keyof typeof t.services]
+            // `t.services` contains the title key plus service objects; assert type for lookup
+            const svc = (t.services as any)[service.key] as { titulo: string; descricao: string; detalhes: string[] }
             return (
               <div key={service.key} className={styles.serviceCard}>
                 <div className={styles.serviceIcon}>{service.icon}</div>
@@ -253,7 +254,7 @@ export default function Home() {
               frameBorder="0"
               style={{ borderRadius: '15px' }}
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.7395945877396!2d-8.833333!3d41.693611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd41c5b5c5b5c5b5d%3A0x5c5c5c5c5c5c5c5c!2sViana%20do%20Castelo%2C%20Portugal!5e0!3m2!1spt-PT!2spt!4v1234567890"
-              allowFullScreen=""
+              allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
