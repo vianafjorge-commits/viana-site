@@ -2,9 +2,16 @@
 
 import { useState } from 'react'
 import { translations } from '../lib/i18n'
+import { detectIntent, generateAIResponse, shouldEscalateToHuman } from '../lib/ai-engine'
 import styles from './page.module.css'
 
 type Locale = 'pt' | 'en'
+
+interface ChatMessage {
+  bot: boolean
+  text: string
+  suggestions?: string[]
+}
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>('pt')
@@ -422,23 +429,58 @@ function NewsletterForm({ locale, t }: { locale: 'pt' | 'en', t: any }) {
 }
 
 function ChatBot({ locale, t, open, setOpen }: { locale: 'pt' | 'en', t: any, open: boolean, setOpen: (v: boolean) => void }) {
-  const [messages, setMessages] = useState(t.chat.messages)
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    { bot: true, text: t.chat.messages[0].text, suggestions: locale === 'pt' ? ['Ver Preços', 'Agendar', 'Sobre Nós'] : ['View Prices', 'Book Now', 'About Us'] }
+  ])
   const [input, setInput] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSend = () => {
     if (input.trim()) {
-      setMessages([...messages, { bot: false, text: input }])
+      setIsLoading(true)
+      
+      // Add user message
+      setMessages(prev => [...prev, { bot: false, text: input }])
+      
+      // Detect intent using AI engine
+      const intent = detectIntent(input, locale)
+      
+      // Check if needs human escalation
+      if (shouldEscalateToHuman(input, locale)) {
+        setTimeout(() => {
+          const escalationMsg = locale === 'pt' 
+            ? '😟 Desculpa ouvir isso! Vou conectar com nosso gerente para ajudar melhor. Um momento...'
+            : '😟 Sorry to hear that! I\'ll connect you with our manager to help better. One moment...'
+          
+          setMessages(prev => [...prev, { 
+            bot: true, 
+            text: escalationMsg,
+            suggestions: locale === 'pt' ? ['Telefonar', 'Email'] : ['Call', 'Email']
+          }])
+          setIsLoading(false)
+        }, 800)
+      } else {
+        // Generate AI response
+        setTimeout(() => {
+          const aiResponse = generateAIResponse(intent, locale)
+          setMessages(prev => [...prev, { 
+            bot: true, 
+            text: aiResponse.text,
+            suggestions: aiResponse.suggestions
+          }])
+          setIsLoading(false)
+        }, 600)
+      }
+      
       setInput('')
-      setTimeout(() => {
-        const responses = [
-          locale === 'pt' ? 'Ótimo! Como posso ajudar?' : 'Great! How can I help?',
-          locale === 'pt' ? 'Qual serviço você procura?' : 'Which service are you looking for?',
-          locale === 'pt' ? 'Posso agendar para você!' : 'I can schedule for you!',
-        ]
-        const randomResponse = responses[Math.floor(Math.random() * responses.length)]
-        setMessages(prev => [...prev, { bot: true, text: randomResponse }])
-      }, 500)
     }
+  }
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setInput(suggestion)
+    setTimeout(() => {
+      handleSend()
+    }, 100)
   }
 
   return (
@@ -459,21 +501,50 @@ function ChatBot({ locale, t, open, setOpen }: { locale: 'pt' | 'en', t: any, op
           </div>
           <div className={styles.chatMessages}>
             {messages.map((msg, i) => (
-              <div key={i} className={`${styles.chatMessage} ${msg.bot ? styles.bot : styles.user}`}>
-                {msg.text}
+              <div key={i}>
+                <div className={`${styles.chatMessage} ${msg.bot ? styles.bot : styles.user}`}>
+                  {msg.text}
+                </div>
+                {msg.suggestions && msg.bot && (
+                  <div className={styles.chatSuggestions}>
+                    {msg.suggestions.map((sugg, j) => (
+                      <button
+                        key={j}
+                        className={styles.suggestionBtn}
+                        onClick={() => handleSuggestionClick(sugg)}
+                      >
+                        {sugg}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
+            {isLoading && (
+              <div className={`${styles.chatMessage} ${styles.bot}`}>
+                <div className={styles.typingIndicator}>
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            )}
           </div>
           <div className={styles.chatInput}>
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+              onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSend()}
               placeholder={t.chat.placeholder}
               className={styles.chatInputField}
+              disabled={isLoading}
             />
-            <button onClick={handleSend} className={styles.chatSendBtn}>{t.chat.send}</button>
+            <button 
+              onClick={handleSend} 
+              className={styles.chatSendBtn}
+              disabled={isLoading}
+            >
+              {t.chat.send}
+            </button>
           </div>
         </div>
       )}

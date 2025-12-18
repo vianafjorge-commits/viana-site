@@ -1066,16 +1066,82 @@ body {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  padding: 0 16px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: transform 0.2s;
 }
 
 .chatSendBtn:hover {
   transform: scale(1.05);
+}
+
+.chatSendBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.chatSuggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 0 16px;
+}
+
+.suggestionBtn {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 6px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.suggestionBtn:hover {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
+.typingIndicator {
+  display: flex;
+  gap: 4px;
+  padding: 10px;
+}
+
+.typingIndicator span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #999;
+  animation: bounce 1.4s infinite;
+}
+
+.typingIndicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typingIndicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px); }
+}
+
+.chatClose {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 24px;
+  height: 24px;
 }
 
 /* ===== RESPONSIVE ===== */
