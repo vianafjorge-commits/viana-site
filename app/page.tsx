@@ -73,6 +73,22 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Values Section */}
+      <section className={styles.valuesSection}>
+        <div className={styles.valuesContainer}>
+          <h2 className={styles.valuesTitle}>{t.values.titulo}</h2>
+          <div className={styles.valuesGrid}>
+            {t.values.items.map((item, i) => (
+              <div key={i} className={styles.valueCard}>
+                <div className={styles.valueIcon}>{item.icon}</div>
+                <h3 className={styles.valueTitle}>{item.title}</h3>
+                <p className={styles.valueDesc}>{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Trust Indicators */}
       <section className={styles.trustSection}>
         <div className={styles.trustGrid}>

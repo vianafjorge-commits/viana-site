@@ -20,12 +20,37 @@ export const translations = {
       cta: 'Agendar Agora',
       badge: 'Certificado Eco-Friendly • Recomendado'
     },
+    values: {
+      titulo: 'Nossos Compromissos',
+      items: [
+        { 
+          icon: '💚', 
+          title: 'Produtos Eco-Friendly', 
+          desc: '100% dos produtos são biodegradáveis e seguros para sua família e animais de estimação.'
+        },
+        { 
+          icon: '✅', 
+          title: 'Satisfação Garantida', 
+          desc: 'Se não ficar satisfeito, refazemos o trabalho sem custo adicional. Sua satisfação é nossa prioridade.'
+        },
+        { 
+          icon: '🤝', 
+          title: 'Atenção Personalizada', 
+          desc: 'Cada cliente é único. Adaptamos nossos serviços às suas necessidades específicas.'
+        },
+        { 
+          icon: '💝', 
+          title: 'Simpatia e Cuidado', 
+          desc: 'Tratamos seu lar como se fosse o nosso. Com respeito, discrição e máxima atenção aos detalhes.'
+        },
+      ]
+    },
     testimonials: {
       titulo: 'O Que Nossos Clientes Dizem',
       items: [
-        { name: 'Maria Silva', role: 'Proprietária', text: 'Serviço impecável! Recomendo a Viana para todos os meus amigos. Equipe profissional e atenciosa.', rating: 5 },
-        { name: 'João Santos', role: 'Gerente Comercial', text: 'A Viana transformou a limpeza do nosso escritório. Agora sim temos um ambiente limpo e organizado.', rating: 5 },
-        { name: 'Ana Oliveira', role: 'Diretora', text: 'Pontual, confiável e com excelente qualidade. A Viana é parceira de confiança para nosso condomínio.', rating: 5 },
+        { name: 'Maria Silva', role: 'Proprietária', text: 'Serviço impecável! Recomendo a Viana para todos os meus amigos. Equipe profissional, atenciosa e muito simpática.', rating: 5 },
+        { name: 'João Santos', role: 'Gerente Comercial', text: 'A Viana transformou a limpeza do nosso escritório. Produtos eco-friendly e pessoal que realmente se importa com a qualidade.', rating: 5 },
+        { name: 'Ana Oliveira', role: 'Diretora', text: 'Pontual, confiável e com excelente qualidade. A garantia de satisfação nos deu confiança total. Verdadeiros parceiros!', rating: 5 },
       ]
     },
     gallery: {
@@ -181,12 +206,37 @@ export const translations = {
       cta: 'Book Now',
       badge: 'Eco-Certified • Recommended'
     },
+    values: {
+      titulo: 'Our Commitments',
+      items: [
+        { 
+          icon: '💚', 
+          title: 'Eco-Friendly Products', 
+          desc: '100% biodegradable products that are safe for your family and pets.'
+        },
+        { 
+          icon: '✅', 
+          title: 'Satisfaction Guaranteed', 
+          desc: 'If you\'re not satisfied, we redo the work at no additional cost. Your satisfaction is our priority.'
+        },
+        { 
+          icon: '🤝', 
+          title: 'Personalized Attention', 
+          desc: 'Every client is unique. We adapt our services to your specific needs.'
+        },
+        { 
+          icon: '💝', 
+          title: 'Care & Sympathy', 
+          desc: 'We treat your home as if it were ours. With respect, discretion and maximum attention to detail.'
+        },
+      ]
+    },
     testimonials: {
       titulo: 'What Our Clients Say',
       items: [
-        { name: 'Maria Silva', role: 'Property Owner', text: 'Impeccable service! I recommend Viana to all my friends. Professional and attentive team.', rating: 5 },
-        { name: 'João Santos', role: 'Commercial Manager', text: 'Viana transformed our office cleaning. Now we have a truly clean and organized environment.', rating: 5 },
-        { name: 'Ana Oliveira', role: 'Director', text: 'Punctual, reliable and excellent quality. Viana is a trusted partner for our condominium.', rating: 5 },
+        { name: 'Maria Silva', role: 'Property Owner', text: 'Impeccable service! I recommend Viana to all my friends. Professional, attentive and very kind team.', rating: 5 },
+        { name: 'João Santos', role: 'Commercial Manager', text: 'Viana transformed our office cleaning. Eco-friendly products and staff that truly care about quality.', rating: 5 },
+        { name: 'Ana Oliveira', role: 'Director', text: 'Punctual, reliable and excellent quality. The satisfaction guarantee gave us full confidence. True partners!', rating: 5 },
       ]
     },
     gallery: {
