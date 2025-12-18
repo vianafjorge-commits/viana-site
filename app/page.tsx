@@ -241,3 +241,4 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   )
   )
 }
+// Updated at Thu Dec 18 09:09:57 WAT 2025
