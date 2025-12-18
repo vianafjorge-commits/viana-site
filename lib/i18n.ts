@@ -67,6 +67,29 @@ export const translations = {
         { q: 'Como faço para receber um orçamento?', a: 'Clique em "Agendar Agora" ou nos contacte via WhatsApp. Resposta em menos de 1 hora.' },
       ]
     },
+    blog: {
+      titulo: 'Blog de Dicas',
+      items: [
+        { titulo: 'Como Limpar Vidros Sem Deixar Marcas', data: '15 Dec 2025', resumo: 'Aprenda as técnicas profissionais para limpar vidros e deixá-los impecáveis.', categoria: 'Dicas' },
+        { titulo: 'Produtos Eco-Friendly: Melhores para Sua Saúde', data: '12 Dec 2025', resumo: 'Conheça os benefícios dos produtos sustentáveis para sua família.', categoria: 'Sustentabilidade' },
+        { titulo: 'Agendamento Regular: Por Que É Importante?', data: '10 Dec 2025', resumo: 'Descubra como manter seus espaços sempre limpos com limpezas periódicas.', categoria: 'Serviços' },
+      ]
+    },
+    calendar: {
+      titulo: 'Agendar Serviço',
+      selectDate: 'Selecionar Data',
+      selectTime: 'Selecionar Horário',
+      confirm: 'Confirmar Agendamento',
+      availableTimes: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'],
+    },
+    location: {
+      titulo: 'Nos Visite',
+      descricao: 'Localizado no coração de Viana do Castelo',
+      endereco: 'Avenida Principal, 123 - Viana do Castelo',
+      telefone: '+351 91 234 5678',
+      email: 'info@viana-limpezas.pt',
+      horarios: 'Seg-Sex: 9h-18h | Sáb: 9h-13h',
+    },
     services: {
       titulo: 'Nossos Serviços',
       limpeza_residencial: {
@@ -187,6 +210,29 @@ export const translations = {
         { q: 'Do you offer commercial cleaning?', a: 'Yes! We have experience with offices, shops, hotels and various commercial spaces.' },
         { q: 'How do I get a quote?', a: 'Click "Book Now" or contact us via WhatsApp. Response in less than 1 hour.' },
       ]
+    },
+    blog: {
+      titulo: 'Blog & Tips',
+      items: [
+        { titulo: 'How to Clean Glass Without Leaving Marks', data: '15 Dec 2025', resumo: 'Learn the professional techniques to clean glass and leave it impeccable.', categoria: 'Tips' },
+        { titulo: 'Eco-Friendly Products: Better for Your Health', data: '12 Dec 2025', resumo: 'Discover the benefits of sustainable products for your family.', categoria: 'Sustainability' },
+        { titulo: 'Regular Scheduling: Why Is It Important?', data: '10 Dec 2025', resumo: 'Find out how to keep your spaces always clean with periodic cleaning.', categoria: 'Services' },
+      ]
+    },
+    calendar: {
+      titulo: 'Book Service',
+      selectDate: 'Select Date',
+      selectTime: 'Select Time',
+      confirm: 'Confirm Booking',
+      availableTimes: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'],
+    },
+    location: {
+      titulo: 'Visit Us',
+      descricao: 'Located in the heart of Viana do Castelo',
+      endereco: 'Main Avenue, 123 - Viana do Castelo',
+      telefone: '+351 91 234 5678',
+      email: 'info@viana-limpezas.pt',
+      horarios: 'Mon-Fri: 9am-6pm | Sat: 9am-1pm',
     },
     services: {
       titulo: 'Our Services',

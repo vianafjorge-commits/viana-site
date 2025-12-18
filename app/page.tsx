@@ -186,6 +186,70 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Blog Section */}
+      <section className={styles.blogSection}>
+        <h2 className={styles.sectionTitle}>{t.blog.titulo}</h2>
+        <div className={styles.blogGrid}>
+          {t.blog.items.map((post, i) => (
+            <article key={i} className={styles.blogCard}>
+              <div className={styles.blogDate}>{post.data}</div>
+              <h3>{post.titulo}</h3>
+              <div className={styles.blogCategory}>{post.categoria}</div>
+              <p>{post.resumo}</p>
+              <a href="#" className={styles.blogLink}>
+                {locale === 'pt' ? 'Ler Mais' : 'Read More'} →
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Calendar Section */}
+      <section className={styles.calendarSection}>
+        <h2 className={styles.sectionTitle}>{t.calendar.titulo}</h2>
+        <div className={styles.calendarContainer}>
+          <CalendarBooking locale={locale} t={t} />
+        </div>
+      </section>
+
+      {/* Map Section */}
+      <section className={styles.mapSection}>
+        <h2 className={styles.sectionTitle}>{t.location.titulo}</h2>
+        <div className={styles.mapContent}>
+          <div className={styles.mapIframe}>
+            <iframe
+              width="100%"
+              height="400"
+              frameBorder="0"
+              style={{ borderRadius: '15px' }}
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.7395945877396!2d-8.833333!3d41.693611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd41c5b5c5b5c5b5d%3A0x5c5c5c5c5c5c5c5c!2sViana%20do%20Castelo%2C%20Portugal!5e0!3m2!1spt-PT!2spt!4v1234567890"
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <div className={styles.locationInfo}>
+            <h3>{t.location.descricao}</h3>
+            <div className={styles.infoItem}>
+              <span className={styles.infoLabel}>📍 {locale === 'pt' ? 'Endereço:' : 'Address:'}</span>
+              <p>{t.location.endereco}</p>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.infoLabel}>📞 {locale === 'pt' ? 'Telefone:' : 'Phone:'}</span>
+              <p>{t.location.telefone}</p>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.infoLabel}>📧 {locale === 'pt' ? 'Email:' : 'Email:'}</span>
+              <p>{t.location.email}</p>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.infoLabel}>🕐 {locale === 'pt' ? 'Horários:' : 'Hours:'}</span>
+              <p>{t.location.horarios}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className={styles.ctaSection}>
         <h2>{locale === 'pt' ? 'Pronto para Transformar Seus Espaços?' : 'Ready to Transform Your Spaces?'}</h2>
@@ -239,6 +303,75 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
       {open && <p className={styles.faqAnswer}>{answer}</p>}
     </div>
   )
+}
+
+function CalendarBooking({ locale, t }: { locale: 'pt' | 'en', t: any }) {
+  const [selectedDate, setSelectedDate] = useState<string>('')
+  const [selectedTime, setSelectedTime] = useState<string>('')
+
+  const handleBooking = () => {
+    if (selectedDate && selectedTime) {
+      const message = locale === 'pt'
+        ? `Gostaria de agendar para ${selectedDate} às ${selectedTime}`
+        : `I would like to book for ${selectedDate} at ${selectedTime}`
+      window.open(`https://wa.me/351912345678?text=${encodeURIComponent(message)}`, '_blank')
+    }
+  }
+
+  const getNextDays = () => {
+    const days = []
+    for (let i = 1; i <= 14; i++) {
+      const date = new Date()
+      date.setDate(date.getDate() + i)
+      if (date.getDay() !== 0) { // Exclude Sundays
+        days.push(date.toISOString().split('T')[0])
+      }
+    }
+    return days
+  }
+
+  return (
+    <div className={styles.bookingForm}>
+      <div className={styles.bookingField}>
+        <label>{t.calendar.selectDate}:</label>
+        <select 
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+          className={styles.bookingSelect}
+        >
+          <option value="">{locale === 'pt' ? 'Escolha uma data' : 'Choose a date'}</option>
+          {getNextDays().map(date => (
+            <option key={date} value={date}>
+              {new Date(date).toLocaleDateString(locale === 'pt' ? 'pt-PT' : 'en-GB')}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className={styles.bookingField}>
+        <label>{t.calendar.selectTime}:</label>
+        <select 
+          value={selectedTime}
+          onChange={(e) => setSelectedTime(e.target.value)}
+          className={styles.bookingSelect}
+        >
+          <option value="">{locale === 'pt' ? 'Escolha um horário' : 'Choose a time'}</option>
+          {t.calendar.availableTimes.map((time: string) => (
+            <option key={time} value={time}>{time}</option>
+          ))}
+        </select>
+      </div>
+
+      <button 
+        onClick={handleBooking}
+        disabled={!selectedDate || !selectedTime}
+        className={styles.bookingBtn}
+      >
+        💬 {t.calendar.confirm}
+      </button>
+    </div>
+  )
+}
   )
 }
 // Updated at Thu Dec 18 09:09:57 WAT 2025
