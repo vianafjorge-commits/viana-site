@@ -36,6 +36,24 @@ body {
   align-items: center;
 }
 
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logoContainer:hover {
+  transform: scale(1.02);
+}
+
+.logoImage {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
 .logo {
   font-size: 1.8rem;
   font-weight: 700;
@@ -43,6 +61,16 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  margin: 0;
+}
+
+.logoTagline {
+  font-size: 0.75rem;
+  color: #666;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .langButton {

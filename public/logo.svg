@@ -1,0 +1,38 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Circle background -->
+  <circle cx="60" cy="60" r="58" fill="url(#logoGradient)" opacity="0.1" stroke="url(#logoGradient)" stroke-width="2"/>
+  
+  <!-- Main "A" letter with modern geometric style -->
+  <g filter="url(#shadow)">
+    <!-- Left stroke of A -->
+    <path d="M 35 85 L 60 25 L 60 25" stroke="url(#logoGradient)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Right stroke of A -->
+    <path d="M 85 85 L 60 25" stroke="url(#logoGradient)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Horizontal bar of A (with clean style) -->
+    <line x1="40" y1="65" x2="80" y2="65" stroke="url(#logoGradient)" stroke-width="5" stroke-linecap="round"/>
+    
+    <!-- Sparkle/shine accent - representing cleanliness -->
+    <circle cx="95" cy="40" r="4" fill="url(#logoGradient)"/>
+    <circle cx="98" cy="42" r="2.5" fill="url(#logoGradient)" opacity="0.6"/>
+    
+    <!-- Subtle water drop detail below A (cleanliness element) -->
+    <path d="M 60 95 Q 58 100 60 105 Q 62 100 60 95" fill="url(#logoGradient)" opacity="0.7"/>
+  </g>
+  
+  <!-- Text below -->
+  <text x="60" y="115" font-family="Arial, sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="url(#logoGradient)">
+    VIANA
+  </text>
+</svg>

@@ -35,7 +35,13 @@ export default function Home() {
       {/* Navbar */}
       <nav className={styles.navbar}>
         <div className={styles.navContent}>
-          <h1 className={styles.logo}>✨ Viana</h1>
+          <div className={styles.logoContainer}>
+            <img src="/logo.svg" alt="Viana Logo" className={styles.logoImage} />
+            <div>
+              <h1 className={styles.logo}>Viana</h1>
+              <p className={styles.logoTagline}>{locale === 'pt' ? 'Liderada por Ana' : 'Led by Ana'}</p>
+            </div>
+          </div>
           <button onClick={toggleLanguage} className={styles.langButton}>
             {locale === 'pt' ? '🇬🇧 EN' : '🇵🇹 PT'}
           </button>

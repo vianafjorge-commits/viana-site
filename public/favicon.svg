@@ -1,0 +1,26 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="faviconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Circle background -->
+  <circle cx="60" cy="60" r="60" fill="url(#faviconGradient)"/>
+  
+  <!-- Main "A" letter -->
+  <g>
+    <!-- Left stroke -->
+    <path d="M 35 85 L 60 25" stroke="white" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Right stroke -->
+    <path d="M 85 85 L 60 25" stroke="white" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Horizontal bar -->
+    <line x1="40" y1="65" x2="80" y2="65" stroke="white" stroke-width="5" stroke-linecap="round"/>
+    
+    <!-- Sparkle -->
+    <circle cx="95" cy="40" r="3" fill="white"/>
+  </g>
+</svg>
