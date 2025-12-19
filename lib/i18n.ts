@@ -156,12 +156,65 @@ export const translations = {
           'Serviços personalizados'
         ]
       },
+      organizacao: {
+        titulo: 'Organização de Cozinha e Roupa',
+        descricao: 'Organização profissional de armários, despensas, roupa e lavandaria. Tudo arrumado, funcional e bonito!',
+        detalhes: [
+          'Arrumação de armários e despensas',
+          'Organização de roupa e lavandaria',
+          'Dicas de otimização de espaço',
+          'Soluções personalizadas para cada cliente'
+        ]
+      },
     },
     trust: {
       anos: 'Anos de Experiência',
       clientes: 'Clientes Satisfeitos',
       satisfacao: 'Taxa de Satisfação',
       eco: 'Produtos Eco-Friendly',
+    },
+    guarantee: {
+      titulo: 'Garantia de Satisfação Total',
+      subtitulo: 'Se não ficar satisfeito, refazemos sem custos adicionais',
+      descricao: 'A sua satisfação é a nossa prioridade. Se algo não estiver perfeito, entre em contacto até ao próximo dia útil e corrigiremos sem qualquer custo extra. Confiança garantida há mais de 10 anos.',
+      cta: 'Conhecer a Nossa Garantia'
+    },
+    certifications: {
+      titulo: 'Certificados e Reconhecimentos',
+      items: [
+        { name: 'ISO 9001', desc: 'Gestão de Qualidade' },
+        { name: 'Eco-Certified', desc: 'Produtos Sustentáveis' },
+        { name: 'Seguro Total', desc: 'Profissionais Segurados' },
+        { name: 'Background Checked', desc: 'Equipa Verificada' }
+      ]
+    },
+    impact: {
+      titulo: 'Impacto Social',
+      subtitle: 'Cada serviço contribui para um mundo melhor',
+      trees: 'Árvores plantadas',
+      charity: 'Apoio a instituições locais',
+      carbon: 'Compensação de carbono'
+    },
+    giftVoucher: {
+      titulo: 'Ofereça o Presente do Tempo Livre',
+      subtitulo: 'Certificados de presente para quem mais gosta',
+      descricao: 'Surpreenda alguém especial com um certificado de limpeza. O presente perfeito para pais, avós, amigos ou colegas. Válido por 12 meses.',
+      cta: 'Comprar Certificado',
+      valores: ['€50', '€100', '€150', '€200', 'Personalizado']
+    },
+    membership: {
+      titulo: 'Clube de Fidelidade Viana',
+      subtitulo: 'Poupe até 20% em todos os serviços',
+      descricao: 'Junte-se ao nosso clube exclusivo e desfrute de vantagens especiais, descontos recorrentes, prioridade no agendamento e muito mais.',
+      benefits: [
+        '20% desconto em todos os serviços',
+        'Prioridade no agendamento',
+        'Sem taxas de cancelamento',
+        'Consultoria gratuita de organização',
+        'Produtos eco-friendly premium'
+      ],
+      cta: 'Aderir Agora',
+      price: '€19,90/mês'
     },
     footer: {
       direitos: 'Todos os direitos reservados © 2025 Viana Limpezas.',
@@ -331,8 +384,49 @@ export const translations = {
       clientes: 'Satisfied Clients',
       satisfacao: 'Satisfaction Rate',
       eco: 'Eco-Friendly Products',
+    },    guarantee: {
+      titulo: 'Total Satisfaction Guarantee',
+      subtitulo: 'If you\'re not satisfied, we\'ll redo it at no extra cost',
+      descricao: 'Your satisfaction is our priority. If something isn\'t perfect, contact us by the next business day and we\'ll make it right at no additional charge. Trusted for over 10 years.',
+      cta: 'Learn About Our Guarantee'
     },
-    footer: {
+    certifications: {
+      titulo: 'Certifications and Recognition',
+      items: [
+        { name: 'ISO 9001', desc: 'Quality Management' },
+        { name: 'Eco-Certified', desc: 'Sustainable Products' },
+        { name: 'Fully Insured', desc: 'Insured Professionals' },
+        { name: 'Background Checked', desc: 'Verified Team' }
+      ]
+    },
+    impact: {
+      titulo: 'Social Impact',
+      subtitle: 'Every service contributes to a better world',
+      trees: 'Trees planted',
+      charity: 'Support for local charities',
+      carbon: 'Carbon offset'
+    },
+    giftVoucher: {
+      titulo: 'Give the Gift of Free Time',
+      subtitulo: 'Gift certificates for those you love most',
+      descricao: 'Surprise someone special with a cleaning certificate. The perfect gift for parents, grandparents, friends or colleagues. Valid for 12 months.',
+      cta: 'Buy Certificate',
+      valores: ['€50', '€100', '€150', '€200', 'Custom']
+    },
+    membership: {
+      titulo: 'Viana Membership Club',
+      subtitulo: 'Save up to 20% on all services',
+      descricao: 'Join our exclusive club and enjoy special perks, recurring discounts, priority booking and much more.',
+      benefits: [
+        '20% discount on all services',
+        'Priority booking',
+        'No cancellation fees',
+        'Free organization consultation',
+        'Premium eco-friendly products'
+      ],
+      cta: 'Join Now',
+      price: '€19.90/month'
+    },    footer: {
       direitos: 'All rights reserved © 2025 Viana Cleaning.',
       whatsapp: 'WhatsApp Chat',
       endereco: 'Viana do Castelo, Portugal',

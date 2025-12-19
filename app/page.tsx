@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { translations } from '../lib/i18n'
 import { detectIntent, generateAIResponse, shouldEscalateToHuman } from '../lib/ai-engine'
 import styles from './page.module.css'
+import BeforeAfterSlider from './components/BeforeAfterSlider'
 
 type Locale = 'pt' | 'en'
 
@@ -49,25 +50,32 @@ export default function Home() {
       </nav>
 
       {/* Hero Section Premium */}
+
       <section className={styles.heroPremium}>
         <div className={styles.heroOverlay}></div>
+        <img
+          src="/images/limpeza-hero-pt.jpg"
+          alt="Profissional de limpeza em Viana do Castelo"
+          className={styles.heroImage}
+          style={{ width: '100%', maxHeight: 400, objectFit: 'cover', borderRadius: '16px', marginBottom: 32 }}
+        />
         <div className={styles.heroContent}>
-          <div className={styles.heroBadge}>{t.hero.badge}</div>
-          <h1 className={styles.heroTitle}>{t.hero.titulo}</h1>
-          <p className={styles.heroSubtitle}>{t.hero.subtitulo}</p>
-          <p className={styles.heroDescription}>{t.hero.descricao}</p>
+          <div className={styles.heroBadge}>Produtos ecológicos • Satisfação garantida</div>
+          <h1 className={styles.heroTitle}>Limpezas Profissionais em Viana do Castelo</h1>
+          <p className={styles.heroSubtitle}>Transformamos a sua casa ou empresa num espaço impecável, com simpatia e atenção ao cliente.</p>
+          <p className={styles.heroDescription}>Mais de 10 anos de experiência. Equipa de confiança, produtos amigos do ambiente e resultados visíveis.</p>
           <div className={styles.heroCTA}>
             <button 
               className={styles.ctaPrimary}
               onClick={() => openWhatsApp()}
             >
-              {t.hero.cta} →
+              Agende já a sua limpeza →
             </button>
             <button 
               className={styles.ctaSecondary}
-              onClick={() => openWhatsApp(`Gostaria de um orçamento para limpeza.`)}
+              onClick={() => openWhatsApp('Gostaria de pedir um orçamento para limpeza.')}
             >
-              📋 {locale === 'pt' ? 'Solicitar Orçamento' : 'Request Quote'}
+              📋 Peça Orçamento
             </button>
           </div>
         </div>
@@ -111,26 +119,82 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Guarantee Section - Inspired by Molly Maid */}
+      <section className={styles.guaranteeSection}>
+        <div className={styles.guaranteeContainer}>
+          <div className={styles.guaranteeBadge}>✓</div>
+          <h2 className={styles.guaranteeTitle}>{t.guarantee.titulo}</h2>
+          <p className={styles.guaranteeSubtitle}>{t.guarantee.subtitulo}</p>
+          <p className={styles.guaranteeDesc}>{t.guarantee.descricao}</p>
+          <button className={styles.ctaPrimary} onClick={() => openWhatsApp('Quero saber mais sobre a garantia de satisfação.')}>
+            {t.guarantee.cta}
+          </button>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section className={styles.certificationsSection}>
+        <h2 className={styles.sectionTitle}>{t.certifications.titulo}</h2>
+        <div className={styles.certificationsGrid}>
+          {t.certifications.items.map((cert, i) => (
+            <div key={i} className={styles.certCard}>
+              <div className={styles.certIcon}>✓</div>
+              <h3>{cert.name}</h3>
+              <p>{cert.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Social Impact Section */}
+      <section className={styles.impactSection}>
+        <h2 className={styles.sectionTitle}>{t.impact.titulo}</h2>
+        <p className={styles.impactSubtitle}>{t.impact.subtitle}</p>
+        <div className={styles.impactGrid}>
+          <div className={styles.impactCard}>
+            <div className={styles.impactNumber}>1,250+</div>
+            <p>{t.impact.trees}</p>
+          </div>
+          <div className={styles.impactCard}>
+            <div className={styles.impactNumber}>€5,000+</div>
+            <p>{t.impact.charity}</p>
+          </div>
+          <div className={styles.impactCard}>
+            <div className={styles.impactNumber}>100%</div>
+            <p>{t.impact.carbon}</p>
+          </div>
+        </div>
+      </section>
+
       {/* Services Preview */}
       <section className={styles.servicesSection}>
         <h2 className={styles.sectionTitle}>{t.services.titulo}</h2>
         <div className={styles.servicesGrid}>
-          {[
-            { key: 'limpeza_residencial', icon: '🏠' },
-            { key: 'limpeza_empresarial', icon: '🏢' },
-          ].map((service) => {
-            // `t.services` contains the title key plus service objects; assert type for lookup
+          {[{ key: 'limpeza_residencial', icon: '🏠', img: '/images/servico-residencial.jpg' },
+            { key: 'limpeza_empresarial', icon: '🏢', img: '/images/servico-empresarial.jpg' },
+            { key: 'organizacao', icon: '🧺', img: '/images/servico-organizacao.jpg', badge: 'Novo' }].map((service) => {
             const svc = (t.services as any)[service.key] as { titulo: string; descricao: string; detalhes: string[] }
             return (
               <div key={service.key} className={styles.serviceCard}>
+                <img src={service.img} alt={svc.titulo} className={styles.serviceImg} />
                 <div className={styles.serviceIcon}>{service.icon}</div>
+                {service.badge && <span className={styles.serviceBadge}>{service.badge}</span>}
                 <h3>{svc.titulo}</h3>
-                <p>{svc.descricao}</p>
+                <p className={styles.serviceDescPremium}>
+                  {service.key === 'organizacao'
+                    ? 'Transforme a sua cozinha e lavandaria num espaço funcional, bonito e livre de stress. Consultoria personalizada, dicas de organização, fotos antes/depois e agendamento online disponível.'
+                    : svc.descricao}
+                </p>
                 <ul className={styles.serviceList}>
                   {svc.detalhes.map((detail: string, i: number) => (
                     <li key={i}>✓ {detail}</li>
                   ))}
                 </ul>
+                {service.key === 'organizacao' && (
+                  <button className={styles.ctaPrimary} onClick={() => openWhatsApp('Quero agendar organização de cozinha e roupa!')}>
+                    Agendar Organização
+                  </button>
+                )}
               </div>
             )
           })}
@@ -143,6 +207,7 @@ export default function Home() {
         <div className={styles.testimonialsGrid}>
           {t.testimonials.items.map((testimonial, i) => (
             <div key={i} className={styles.testimonialCard}>
+              <img src={`/images/avatar${i+1}.jpg`} alt={`Foto de ${testimonial.name}`} className={styles.testimonialAvatar} />
               <div className={styles.stars}>{'⭐'.repeat(testimonial.rating)}</div>
               <p className={styles.testimonialText}>"{testimonial.text}"</p>
               <div className={styles.testimonialAuthor}>
@@ -156,22 +221,77 @@ export default function Home() {
 
       {/* Gallery Section */}
       <section className={styles.gallerySection}>
-        <h2 className={styles.sectionTitle}>{t.gallery.titulo}</h2>
+        <h2 className={styles.sectionTitle}>Antes e Depois</h2>
         <div className={styles.galleryGrid}>
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className={styles.galleryItem}>
-              <div className={styles.beforeAfter}>
-                <div className={styles.before}>
-                  <div className={styles.placeholderBefore}></div>
-                  <span>{t.gallery.antes}</span>
-                </div>
-                <div className={styles.after}>
-                  <div className={styles.placeholderAfter}></div>
-                  <span>{t.gallery.depois}</span>
-                </div>
-              </div>
+          <BeforeAfterSlider beforeImg="/images/antes1.jpg" afterImg="/images/depois1.jpg" altBefore="Antes da limpeza" altAfter="Depois da limpeza" />
+          <BeforeAfterSlider beforeImg="/images/antes2.jpg" afterImg="/images/depois2.jpg" altBefore="Antes da limpeza" altAfter="Depois da limpeza" />
+        </div>
+      </section>
+
+      {/* Gift Voucher Section */}
+      <section className={styles.giftVoucherSection}>
+        <div className={styles.giftVoucherContainer}>
+          <div className={styles.giftVoucherContent}>
+            <span className={styles.giftIcon}>🎁</span>
+            <h2 className={styles.giftTitle}>{t.giftVoucher.titulo}</h2>
+            <p className={styles.giftSubtitle}>{t.giftVoucher.subtitulo}</p>
+            <p className={styles.giftDesc}>{t.giftVoucher.descricao}</p>
+            <div className={styles.giftValores}>
+              {t.giftVoucher.valores.map((valor, i) => (
+                <button key={i} className={styles.giftBtn} onClick={() => openWhatsApp(`Quero comprar certificado de presente de ${valor}`)}>
+                  {valor}
+                </button>
+              ))}
             </div>
-          ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Membership Club Section */}
+      <section className={styles.membershipSection}>
+        <div className={styles.membershipContainer}>
+          <h2 className={styles.membershipTitle}>{t.membership.titulo}</h2>
+          <p className={styles.membershipSubtitle}>{t.membership.subtitulo}</p>
+          <p className={styles.membershipDesc}>{t.membership.descricao}</p>
+          <div className={styles.membershipBenefits}>
+            {t.membership.benefits.map((benefit, i) => (
+              <div key={i} className={styles.benefitItem}>
+                <span className={styles.benefitIcon}>✓</span>
+                <span>{benefit}</span>
+              </div>
+            ))}
+          </div>
+          <div className={styles.membershipCTA}>
+            <span className={styles.membershipPrice}>{t.membership.price}</span>
+            <button className={styles.ctaPrimary} onClick={() => openWhatsApp('Quero aderir ao Clube de Fidelidade Viana!')}>
+              {t.membership.cta}
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Trustpilot Reviews Section */}
+      <section className={styles.reviewsSection}>
+        <h2 className={styles.sectionTitle}>{locale === 'pt' ? 'O Que Dizem os Nossos Clientes' : 'What Our Clients Say'}</h2>
+        <div className={styles.trustpilotWidget}>
+          <div className={styles.trustpilotScore}>
+            <div className={styles.trustpilotStars}>⭐⭐⭐⭐⭐</div>
+            <p className={styles.trustpilotRating}>4.8 / 5</p>
+            <p className={styles.trustpilotCount}>{locale === 'pt' ? 'Baseado em 250+ avaliações' : 'Based on 250+ reviews'}</p>
+          </div>
+          <div className={styles.reviewsGrid}>
+            {[
+              { name: 'Sofia Costa', rating: 5, text: 'Excelente serviço! A equipa foi super simpática e deixou tudo impecável. Recomendo!' },
+              { name: 'Miguel Ferreira', rating: 5, text: 'Profissionais de confiança. Já uso os serviços há 2 anos e nunca tive problemas.' },
+              { name: 'Rita Oliveira', rating: 5, text: 'Adorei a organização de cozinha! Transformaram completamente o meu espaço.' }
+            ].map((review, i) => (
+              <div key={i} className={styles.reviewCard}>
+                <div className={styles.reviewStars}>{'⭐'.repeat(review.rating)}</div>
+                <p className={styles.reviewText}>"{review.text}"</p>
+                <p className={styles.reviewAuthor}>— {review.name}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -223,6 +343,7 @@ export default function Home() {
         <div className={styles.blogGrid}>
           {t.blog.items.map((post, i) => (
             <article key={i} className={styles.blogCard}>
+              <img src={`/images/blog${i+1}.jpg`} alt={post.titulo} className={styles.blogImg} />
               <div className={styles.blogDate}>{post.data}</div>
               <h3>{post.titulo}</h3>
               <div className={styles.blogCategory}>{post.categoria}</div>

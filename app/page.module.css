@@ -355,6 +355,7 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   border: 1px solid #f0f0f0;
+  position: relative;
 }
 
 .serviceCard:hover {
@@ -388,6 +389,32 @@
   padding: 0.5rem 0;
   color: #555;
   font-size: 0.95rem;
+}
+
+.serviceBadge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(118,75,162,0.12);
+  z-index: 2;
+  letter-spacing: 1px;
+}
+
+.serviceDescPremium {
+  color: #764ba2;
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+  background: linear-gradient(90deg, #f5f7ff 0%, #f8f9fb 100%);
+  border-left: 4px solid #764ba2;
+  padding-left: 12px;
+  border-radius: 6px;
 }
 
 /* ===== TESTIMONIALS SECTION ===== */
@@ -504,6 +531,82 @@
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+.beforeAfterSlider {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 280px;
+  margin: 0 auto 2rem auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(102,126,234,0.12);
+  background: #f8f9fb;
+}
+.sliderImg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.sliderOverlay {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+  pointer-events: none;
+}
+.sliderHandle {
+  position: absolute;
+  top: 0;
+  width: 32px;
+  height: 100%;
+  background: rgba(102,126,234,0.7);
+  border-radius: 16px;
+  z-index: 3;
+  cursor: ew-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.sliderLabel {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.sliderLabels {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 18px;
+  z-index: 4;
+}
+.sliderBefore {
+  background: #fff;
+  color: #667eea;
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(102,126,234,0.08);
+}
+.sliderAfter {
+  background: #fff;
+  color: #764ba2;
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(118,75,162,0.08);
 }
 
 /* ===== PRICING SECTION ===== */
@@ -1235,6 +1338,359 @@
   padding: 0;
   width: 24px;
   height: 24px;
+}
+
+/* ===== GUARANTEE SECTION ===== */
+.guaranteeSection {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+}
+
+.guaranteeContainer {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.guaranteeBadge {
+  width: 80px;
+  height: 80px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto 2rem;
+  border: 4px solid white;
+}
+
+.guaranteeTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.guaranteeSubtitle {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.95;
+}
+
+.guaranteeDesc {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* ===== CERTIFICATIONS SECTION ===== */
+.certificationsSection {
+  padding: 4rem 2rem;
+  background: #f8f9fb;
+}
+
+.certificationsGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.certCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+
+.certCard:hover {
+  transform: translateY(-5px);
+}
+
+.certIcon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1rem;
+}
+
+.certCard h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.certCard p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* ===== IMPACT SECTION ===== */
+.impactSection {
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, #f5f7ff 0%, #ffffff 100%);
+  text-align: center;
+}
+
+.impactSubtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.impactGrid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+.impactCard {
+  padding: 2rem;
+}
+
+.impactNumber {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.impactCard p {
+  font-size: 1.1rem;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* ===== GIFT VOUCHER SECTION ===== */
+.giftVoucherSection {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+}
+
+.giftVoucherContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.giftIcon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: bounce 2s infinite;
+}
+
+.giftTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.giftSubtitle {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.95;
+}
+
+.giftDesc {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.giftValores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.giftBtn {
+  background: white;
+  color: #ff6b6b;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.giftBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* ===== MEMBERSHIP SECTION ===== */
+.membershipSection {
+  padding: 5rem 2rem;
+  background: linear-gradient(180deg, #f5f7ff 0%, #ffffff 100%);
+}
+
+.membershipContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.membershipTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.membershipSubtitle {
+  font-size: 1.3rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.membershipDesc {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.membershipBenefits {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 1.05rem;
+}
+
+.benefitItem:last-child {
+  border-bottom: none;
+}
+
+.benefitIcon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.membershipCTA {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.membershipPrice {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #667eea;
+}
+
+/* ===== REVIEWS SECTION ===== */
+.reviewsSection {
+  padding: 5rem 2rem;
+  background: #f8f9fb;
+}
+
+.trustpilotWidget {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trustpilotScore {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.trustpilotStars {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.trustpilotRating {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.trustpilotCount {
+  font-size: 1rem;
+  color: #666;
+}
+
+.reviewsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.reviewCard {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.reviewStars {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #ffc107;
+}
+
+.reviewText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.reviewAuthor {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #667eea;
 }
 
 /* ===== RESPONSIVE ===== */
