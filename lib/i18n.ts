@@ -378,6 +378,16 @@ export const translations = {
           'Customized services'
         ]
       },
+      organizacao: {
+        titulo: 'Kitchen & Laundry Organization',
+        descricao: 'Professional organization of cabinets, pantries, wardrobes and laundry. Everything organized, functional and beautiful!',
+        detalhes: [
+          'Cabinet and pantry organization',
+          'Wardrobe and laundry organization',
+          'Space optimization tips',
+          'Customized solutions for each client'
+        ]
+      },
     },
     trust: {
       anos: 'Years of Experience',

@@ -1,0 +1,214 @@
+{
+  "name": "GitHub Events Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "github-events",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-github",
+      "name": "GitHub Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "github-events"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"event\"]}}",
+              "value2": "push"
+            }
+          ]
+        }
+      },
+      "id": "is-push-event",
+      "name": "Is Push Event?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"branch\"]}}",
+              "operation": "contains",
+              "value2": "main"
+            }
+          ]
+        }
+      },
+      "id": "is-main-branch",
+      "name": "Is Main Branch?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 250]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "🚀 Novo commit na branch main!\n\n📦 Repositório: {{$json[\"repository\"]}}\n🔀 Branch: {{$json[\"branch\"]}}\n👤 Autor: {{$json[\"author\"]}}\n💬 Mensagem: {{$json[\"commit_message\"]}}\n🔗 Commit: {{$json[\"commit_sha\"]}}"
+            },
+            {
+              "name": "type",
+              "value": "deploy_notification"
+            }
+          ]
+        }
+      },
+      "id": "format-deploy-message",
+      "name": "Format Deploy Message",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [850, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"type\"]}}",
+              "value2": "build_status"
+            }
+          ]
+        }
+      },
+      "id": "is-build-status",
+      "name": "Is Build Status?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 450]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "notification",
+              "value": "{{$json[\"emoji\"]}} {{$json[\"message\"]}}\n\n📦 Repositório: {{$json[\"repository\"]}}\n🔀 Branch: {{$json[\"branch\"]}}\n🔗 Ver execução: {{$json[\"run_url\"]}}"
+            }
+          ]
+        }
+      },
+      "id": "format-build-status",
+      "name": "Format Build Status",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [650, 400]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"status\": \"success\", \"message\": \"Event processed\" } }}"
+      },
+      "id": "webhook-response",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {},
+      "id": "merge-all",
+      "name": "Merge All Events",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [850, 350]
+    }
+  ],
+  "connections": {
+    "GitHub Webhook": {
+      "main": [
+        [
+          {
+            "node": "Is Push Event?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Is Build Status?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Push Event?": {
+      "main": [
+        [
+          {
+            "node": "Is Main Branch?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Main Branch?": {
+      "main": [
+        [
+          {
+            "node": "Format Deploy Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Deploy Message": {
+      "main": [
+        [
+          {
+            "node": "Merge All Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Build Status?": {
+      "main": [
+        [
+          {
+            "node": "Format Build Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Build Status": {
+      "main": [
+        [
+          {
+            "node": "Merge All Events",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge All Events": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

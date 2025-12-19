@@ -1,0 +1,88 @@
+{
+  "name": "GitHub Deploy Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "github-webhook",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "GitHub Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"ref\"]}}",
+              "value2": "refs/heads/main"
+            }
+          ]
+        }
+      },
+      "id": "if-main-branch",
+      "name": "Is Main Branch?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /app && docker-compose pull && docker-compose up -d"
+      },
+      "id": "deploy-command",
+      "name": "Deploy Application",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [650, 250]
+    },
+    {
+      "parameters": {
+        "message": "✅ Deploy realizado com sucesso!\nBranch: {{$json[\"ref\"]}}\nCommit: {{$json[\"head_commit\"][\"message\"]}}\nAutor: {{$json[\"pusher\"][\"name\"]}}"
+      },
+      "id": "success-notification",
+      "name": "Send Success Notification",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [850, 250]
+    }
+  ],
+  "connections": {
+    "GitHub Webhook": {
+      "main": [
+        [
+          {
+            "node": "Is Main Branch?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Main Branch?": {
+      "main": [
+        [
+          {
+            "node": "Deploy Application",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deploy Application": {
+      "main": [
+        [
+          {
+            "node": "Send Success Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

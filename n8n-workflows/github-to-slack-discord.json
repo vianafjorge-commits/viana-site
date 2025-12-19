@@ -1,0 +1,108 @@
+{
+  "name": "GitHub to Slack Notifications",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "github-to-slack",
+        "options": {}
+      },
+      "id": "webhook-node",
+      "name": "GitHub Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json[\"type\"]}}",
+              "value2": "build_status"
+            }
+          ]
+        }
+      },
+      "id": "check-type",
+      "name": "Check Event Type",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "general",
+          "mode": "name"
+        },
+        "text": "={{$json[\"emoji\"]}} *{{$json[\"message\"]}}*",
+        "blocksUi": {
+          "blocksValues": [
+            {
+              "type": "section",
+              "textUi": {
+                "text": "*📦 Repositório:* {{$json[\"repository\"]}}\n*🔀 Branch:* {{$json[\"branch\"]}}\n*🔗 Link:* {{$json[\"run_url\"]}}"
+              }
+            }
+          ]
+        }
+      },
+      "id": "slack-message",
+      "name": "Send to Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.1,
+      "position": [650, 250],
+      "credentials": {
+        "slackWebhookApi": {
+          "id": "1",
+          "name": "Slack Webhook"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{$json[\"discord_webhook_url\"]}}",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={\n  \"content\": \"{{$json[\"emoji\"]}} **{{$json[\"message\"]}}**\",\n  \"embeds\": [{\n    \"title\": \"Build Status\",\n    \"description\": \"Repositório: {{$json[\"repository\"]}}\\nBranch: {{$json[\"branch\"]}}\",\n    \"color\": \"{{$json[\"status\"] === 'success' ? 3066993 : 15158332}}\",\n    \"url\": \"{{$json[\"run_url\"]}}\"\n  }]\n}"
+      },
+      "id": "discord-webhook",
+      "name": "Send to Discord",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [650, 350]
+    }
+  ],
+  "connections": {
+    "GitHub Webhook": {
+      "main": [
+        [
+          {
+            "node": "Check Event Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Event Type": {
+      "main": [
+        [
+          {
+            "node": "Send to Slack",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Send to Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
