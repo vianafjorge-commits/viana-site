@@ -52,13 +52,12 @@ export default function Home() {
       {/* Hero Section Premium */}
 
       <section className={styles.heroPremium}>
-        <div className={styles.heroOverlay}></div>
         <img
-          src="https://images.unsplash.com/photo-1563453392212-d0ec3941b70a?auto=format&fit=crop&w=1400&q=90"
+          src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=90"
           alt="Profissional de limpeza em Viana do Castelo"
           className={styles.heroImage}
-          style={{ width: '100%', maxHeight: 500, objectFit: 'cover', borderRadius: '20px', marginBottom: 32, boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)' }}
         />
+        <div className={styles.heroOverlay}></div>
         <div className={styles.heroContent}>
           <div className={styles.heroBadge}>Produtos ecológicos • Satisfação garantida</div>
           <h1 className={styles.heroTitle}>Limpezas Profissionais em Viana do Castelo</h1>
