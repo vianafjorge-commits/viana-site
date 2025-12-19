@@ -54,10 +54,10 @@ export default function Home() {
       <section className={styles.heroPremium}>
         <div className={styles.heroOverlay}></div>
         <img
-          src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1200&q=80"
+          src="https://images.unsplash.com/photo-1563453392212-d0ec3941b70a?auto=format&fit=crop&w=1400&q=90"
           alt="Profissional de limpeza em Viana do Castelo"
           className={styles.heroImage}
-          style={{ width: '100%', maxHeight: 400, objectFit: 'cover', borderRadius: '16px', marginBottom: 32 }}
+          style={{ width: '100%', maxHeight: 500, objectFit: 'cover', borderRadius: '20px', marginBottom: 32, boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)' }}
         />
         <div className={styles.heroContent}>
           <div className={styles.heroBadge}>Produtos ecológicos • Satisfação garantida</div>
