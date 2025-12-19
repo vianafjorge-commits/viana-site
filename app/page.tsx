@@ -54,7 +54,7 @@ export default function Home() {
       <section className={styles.heroPremium}>
         <div className={styles.heroOverlay}></div>
         <img
-          src="/images/limpeza-hero-pt.jpg"
+          src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1200&q=80"
           alt="Profissional de limpeza em Viana do Castelo"
           className={styles.heroImage}
           style={{ width: '100%', maxHeight: 400, objectFit: 'cover', borderRadius: '16px', marginBottom: 32 }}
@@ -170,9 +170,9 @@ export default function Home() {
       <section className={styles.servicesSection}>
         <h2 className={styles.sectionTitle}>{t.services.titulo}</h2>
         <div className={styles.servicesGrid}>
-          {[{ key: 'limpeza_residencial', icon: '🏠', img: '/images/servico-residencial.jpg' },
-            { key: 'limpeza_empresarial', icon: '🏢', img: '/images/servico-empresarial.jpg' },
-            { key: 'organizacao', icon: '🧺', img: '/images/servico-organizacao.jpg', badge: 'Novo' }].map((service) => {
+          {[{ key: 'limpeza_residencial', icon: '🏠', img: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?auto=format&fit=crop&w=500&q=80' },
+            { key: 'limpeza_empresarial', icon: '🏢', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=500&q=80' },
+            { key: 'organizacao', icon: '🧺', img: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=500&q=80', badge: 'Novo' }].map((service) => {
             const svc = (t.services as any)[service.key] as { titulo: string; descricao: string; detalhes: string[] }
             return (
               <div key={service.key} className={styles.serviceCard}>
@@ -207,7 +207,7 @@ export default function Home() {
         <div className={styles.testimonialsGrid}>
           {t.testimonials.items.map((testimonial, i) => (
             <div key={i} className={styles.testimonialCard}>
-              <img src={`/images/avatar${i+1}.jpg`} alt={`Foto de ${testimonial.name}`} className={styles.testimonialAvatar} />
+              <img src={`https://i.pravatar.cc/150?img=${i+10}`} alt={`Foto de ${testimonial.name}`} className={styles.testimonialAvatar} />
               <div className={styles.stars}>{'⭐'.repeat(testimonial.rating)}</div>
               <p className={styles.testimonialText}>"{testimonial.text}"</p>
               <div className={styles.testimonialAuthor}>
@@ -223,8 +223,8 @@ export default function Home() {
       <section className={styles.gallerySection}>
         <h2 className={styles.sectionTitle}>Antes e Depois</h2>
         <div className={styles.galleryGrid}>
-          <BeforeAfterSlider beforeImg="/images/antes1.jpg" afterImg="/images/depois1.jpg" altBefore="Antes da limpeza" altAfter="Depois da limpeza" />
-          <BeforeAfterSlider beforeImg="/images/antes2.jpg" afterImg="/images/depois2.jpg" altBefore="Antes da limpeza" altAfter="Depois da limpeza" />
+          <BeforeAfterSlider beforeImg="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=500&q=80" afterImg="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=500&q=80" altBefore="Antes da limpeza" altAfter="Depois da limpeza" />
+          <BeforeAfterSlider beforeImg="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=500&q=80" afterImg="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=500&q=80" altBefore="Antes da limpeza" altAfter="Depois da limpeza" />
         </div>
       </section>
 
@@ -343,7 +343,7 @@ export default function Home() {
         <div className={styles.blogGrid}>
           {t.blog.items.map((post, i) => (
             <article key={i} className={styles.blogCard}>
-              <img src={`/images/blog${i+1}.jpg`} alt={post.titulo} className={styles.blogImg} />
+              <img src={`https://images.unsplash.com/photo-${['1509228468518-180dd4864904', '1465101046530-73398c7f28ca', '1512436991641-6745cdb1723f'][i]}?auto=format&fit=crop&w=500&q=80`} alt={post.titulo} className={styles.blogImg} />
               <div className={styles.blogDate}>{post.data}</div>
               <h3>{post.titulo}</h3>
               <div className={styles.blogCategory}>{post.categoria}</div>
