@@ -177,6 +177,7 @@ export default function Home() {
             return (
               <div key={service.key} className={styles.serviceCard}>
                 <img src={service.img} alt={svc.titulo} className={styles.serviceImg} />
+                <div className={styles.serviceContent}>
                 <div className={styles.serviceIcon}>{service.icon}</div>
                 {service.badge && <span className={styles.serviceBadge}>{service.badge}</span>}
                 <h3>{svc.titulo}</h3>
@@ -195,6 +196,7 @@ export default function Home() {
                     Agendar Organização
                   </button>
                 )}
+                </div>
               </div>
             )
           })}
